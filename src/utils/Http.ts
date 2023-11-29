@@ -10,30 +10,18 @@ interface FetchOptions {
   headers?: AxiosRequestHeaders;
   params?: Dictionary;
   data?: Dictionary<unknown>;
-  type?: 'formData' | null;
 }
 
-type HTTPResponseMetaDetail = string | Dictionary<string[]>;
-
 export interface HttpResponsePaginationProps {
-  pagination: {
-    count: number;
-    next: Nullable<string>;
-    previous: Nullable<string>;
-  };
+  total: number;
+  skip: number;
+  limit: number;
 }
 
 export type HTTPResponse<
   Data = unknown,
   Constraints = NonNullable<unknown>,
-> = Constraints & {
-  data: Data;
-  meta: {
-    status_code: number;
-    paginated?: boolean;
-    detail?: HTTPResponseMetaDetail;
-  };
-};
+> = Constraints & Data;
 
 export default class Http {
   static async get<T, U = Record<string, never>>(
