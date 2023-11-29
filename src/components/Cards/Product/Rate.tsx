@@ -1,4 +1,4 @@
-import { StarIcon } from '@/components/Icons/Star';
+import { StarIcon } from '@/components/kit/Icons/Star';
 import { FC } from 'react';
 
 interface ProductRateProps extends Pick<IProduct, 'rating'> {}

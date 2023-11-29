@@ -1,6 +1,7 @@
+import Pagination from '@/components/kit/Pagination';
+import { ProductCard } from '@/components/Cards/Product';
 import useProduct from '@/hooks/api/products/useProducts';
 import { PAGE_SIZE } from '@/constants/pagination';
-import { ProductCard } from '@/components/Cards/Product';
 
 export default function Home() {
   const { data } = useProduct({
@@ -15,6 +16,12 @@ export default function Home() {
           <ProductCard key={product.id} {...product} />
         ))}
       </div>
+      <Pagination
+        onPageChange={(page) => console.log(page)}
+        siblingCount={1}
+        currentPage={5}
+        count={10}
+      />
     </div>
   );
 }
