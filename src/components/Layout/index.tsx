@@ -12,7 +12,7 @@ export const Layout: HOCFunctionalComponent = ({ children }) => {
               sidebar
             </div>
           </div>
-          <div className="col-span-9 bg-gray-50 h-[2000px] p-2">{children}</div>
+          <div className="col-span-9 bg-gray-50 p-2">{children}</div>
         </div>
       </main>
     </div>

@@ -2,11 +2,8 @@ export default function Header() {
   return (
     <nav className="sticky flex w-full flex-wrap items-center justify-between bg-[#FBFBFB] py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 lg:py-4">
       <div className="flex w-full flex-wrap items-center justify-between px-3">
-        <a
-          className="ml-2 text-xl text-neutral-800"
-          href="#"
-        >
-          Shopping
+        <a className="ml-2 text-xl text-neutral-800" href="#">
+          Shopping Doctor
         </a>
         <div className="ml-5 flex w-[30%] items-center justify-between">
           <input
@@ -28,9 +25,9 @@ export default function Header() {
               className="h-5 w-5"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           </span>

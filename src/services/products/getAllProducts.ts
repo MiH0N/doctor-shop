@@ -2,7 +2,7 @@ import endpoints from '@/constants/endpoints';
 import Http, { type HttpResponsePaginationProps } from '@/utils/Http';
 
 interface GetAllProductsResponse {
-  products: IProduct;
+  products: IProduct[];
 }
 
 export default async function getAllProducts(
