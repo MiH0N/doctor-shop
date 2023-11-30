@@ -13,7 +13,7 @@ interface IPaginationProps {
 }
 
 const paginationItemsStyle =
-  'p-2 h-8 min-w-9 text-center my-auto mx-1 flex justify-center box-border items-center rounded-full cursor-pointer noselect';
+  'p-2 h-8 min-w-[32px] text-center my-auto mx-1 flex justify-center box-border items-center rounded-full cursor-pointer noselect';
 
 const Pagination: FC<IPaginationProps> = ({
   onPageChange,
@@ -51,7 +51,7 @@ const Pagination: FC<IPaginationProps> = ({
 
   return (
     <div
-      className={'p-2 border border-gray-200 rounded-xl w-fit'}
+      className={'p-2 border border-gray-200 rounded-xl w-fit mx-auto my-4'}
     >
       <ul className="flex list-none text-12">
         <li
