@@ -5,11 +5,7 @@ interface ProductRateProps extends Pick<IProduct, 'rating'> {}
 
 export const ProductRate: FC<ProductRateProps> = ({ rating }) => (
   <div className="flex items-center space-x-1 rtl:space-x-reverse">
-    {[...Array(Math.floor(rating))].map(() => (
-      <StarIcon key={crypto.randomUUID()} isFill />
-    ))}
-    {[...Array(5 - Math.floor(rating))].map(() => (
-      <StarIcon key={crypto.randomUUID()} />
-    ))}
+    <StarIcon key={crypto.randomUUID()} isFill />
+    <span className="text-sm ms-2">{rating}</span>
   </div>
 );

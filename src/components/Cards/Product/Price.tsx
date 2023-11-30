@@ -22,7 +22,7 @@ export const ProductPrice: FC<ProductPriceProps> = ({
         ) : null}
       </div>
       {discountPercentage ? (
-        <span className="bg-red-500 text-white p-2 rounded-xl text-xs w-10 text-center">
+        <span className="bg-blue-300 text-white p-2 rounded-xl text-xs w-10 text-center">
           {Math.round(discountPercentage)}%
         </span>
       ) : null}
