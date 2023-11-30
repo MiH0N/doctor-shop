@@ -1,5 +1,8 @@
-import getAllProducts from './getAllProducts';
+import getCategoryList from './category';
+import getProductList from './productList';
 
 export default class ProductService {
-  static getAll = getAllProducts;
+  static getAll = getProductList;
+
+  static getCategories = getCategoryList;
 }
