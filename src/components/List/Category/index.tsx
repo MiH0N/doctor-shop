@@ -1,8 +1,8 @@
-import capitalizeFirstLetter from '@/helpers/capitalizeFirstLetter';
-import useCategory from '@/hooks/api/products/useCategory';
-import classnames from 'classnames';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import classnames from 'classnames';
+import useCategory from '@/hooks/api/products/useCategory';
+import CategoryHelper from '@/helpers/category';
 import type { FC } from 'react';
 interface ICategoryListProps {}
 
@@ -37,7 +37,7 @@ export const CategoryList: FC<ICategoryListProps> = (props) => {
               )}
             >
               <span className="ps-6 text-sm">
-                {capitalizeFirstLetter(category.split('-').join(' '))}
+                {CategoryHelper.formatTitle(category)}
               </span>
             </li>
           </Link>
