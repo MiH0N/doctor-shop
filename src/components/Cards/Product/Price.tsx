@@ -10,10 +10,7 @@ export const ProductPrice: FC<ProductPriceProps> = ({
     <div className="flex items-center justify-between">
       <div>
         <span className="font-bold text-gray-900 text-2xl block">
-          $
-          {Math.floor(
-            price * (discountPercentage ? 100 - discountPercentage : 1),
-          )}
+          ${price - Math.floor((price * discountPercentage) / 100)}
         </span>
         {discountPercentage ? (
           <span className="line-through text-md text-gray-400 block">

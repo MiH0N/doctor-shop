@@ -2,6 +2,7 @@ import React, { useRef, type FC, useState, useEffect } from 'react';
 import Pagination from '@/components/kit/Pagination';
 import { ProductCard } from '@/components/Cards/Product';
 import { ProductCardLoader } from '@/components/Cards/Product/Loader';
+import StyleGenerator from '@/utils/StyleGenerator';
 
 interface IProductsListProps {
   products: IProduct[];
@@ -19,6 +20,7 @@ export const ProductsList: FC<IProductsListProps> = ({
   pagination,
 }) => {
   const wrapper = useRef<HTMLInputElement | null>(null);
+  const styleGenerator = new StyleGenerator();
 
   useEffect(() => {
     wrapper.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -32,7 +34,17 @@ export const ProductsList: FC<IProductsListProps> = ({
               <ProductCardLoader key={crypto.randomUUID()} />
             ))
           : products.map((product) => (
-              <ProductCard key={product.id} {...product} />
+              <ProductCard
+                key={product.id}
+                categoryStyle={{
+                  background: styleGenerator.generateStyle(
+                    product.category,
+                    20,
+                    40,
+                  ).color,
+                }}
+                {...product}
+              />
             ))}
       </div>
       {!!products && pagination.count > 1 ? (
