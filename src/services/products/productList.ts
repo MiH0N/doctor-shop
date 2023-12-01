@@ -1,15 +1,15 @@
 import endpoints from '@/constants/endpoints';
 import Http, { type HttpResponsePaginationProps } from '@/utils/Http';
 
-interface GetAllProductsResponse {
+interface GetProductListResponse {
   products: IProduct[];
 }
 
-export default async function getAllProducts(
+export default async function getProductList(
   params: Omit<HttpResponsePaginationProps, 'total'>,
 ) {
   const result = await Http.get<
-    GetAllProductsResponse,
+    GetProductListResponse,
     HttpResponsePaginationProps
   >({
     url: endpoints.products,
