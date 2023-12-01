@@ -13,7 +13,7 @@ export default function ProductsPage() {
   return (
     <>
       <ProductsList
-        products={data!.products}
+        products={data?.products ?? []}
         isLoading={isLoading}
         pagination={{
           page,
