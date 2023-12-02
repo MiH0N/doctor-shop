@@ -1,9 +1,9 @@
 import React, { type FC } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ProductPrice } from './Price';
 import { ProductRate } from './Rate';
 import CategoryHelper from '@/helpers/category';
-import Link from 'next/link';
 
 interface IProductCardProps extends IProduct {
   categoryStyle: {
@@ -24,7 +24,6 @@ export const ProductCard: FC<IProductCardProps> = ({
   return (
     <div className="relative h-auto cursor-pointer bg-white border text-dark-title border-gray-200 rounded-lg hover:border-transparent hover:shadow-lg duration-300 transition-all">
       <span
-        // text-blue-800
         className="absolute top-2 left-5 z-10 text-xs rounded-md font-semibold px-2.5 py-0.5 my-2 block w-fit text-blue-100"
         style={{
           ...categoryStyle,
@@ -35,9 +34,9 @@ export const ProductCard: FC<IProductCardProps> = ({
         </Link>
       </span>
       <div className="flex flex-col justify-between px-5 py-5 h-full">
-        <div className="h-[250px] w-full relative">
+        <div className="w-[180px] h-[180px] fablet:h-[250px] fablet:w-full relative m-auto">
           <Image
-            className="p-10 rounded-t-lg m-auto relative"
+            className="fablet:p-10 rounded-t-lg m-auto relative"
             src={thumbnail}
             alt="product image"
             fill
