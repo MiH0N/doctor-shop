@@ -1,20 +1,14 @@
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { ProductsList } from '@/components/List/Products';
-import { PAGE_SIZE } from '@/constants/pagination';
-import ProductsServices from '@/services/products';
-import type { ParsedUrlQuery } from 'querystring';
-import type { GetServerSideProps } from 'next/types';
-import isCSR from '@/utils/isCSR';
 import useProductsSearch from '@/hooks/api/products/useProductsSearch';
-import { searchProductsResponse } from '@/services/products/search';
-import { HTTPResponse, HttpResponsePaginationProps } from '@/utils/Http';
+import isCSR from '@/utils/isCSR';
+import ProductsServices from '@/services/products';
+import endpoints from '@/constants/endpoints';
+import { PAGE_SIZE } from '@/constants/pagination';
+import type { GetServerSideProps } from 'next/types';
 
-interface SearchPageProps
-  extends HTTPResponse<searchProductsResponse, HttpResponsePaginationProps> {
-  query: ParsedUrlQuery;
-}
-
-export default function SearchPage({ query, ...initialData }: SearchPageProps) {
+export default function SearchPage() {
   const router = useRouter();
 
   const { data, isLoading } = useProductsSearch({
@@ -23,18 +17,13 @@ export default function SearchPage({ query, ...initialData }: SearchPageProps) {
     search: router.query.q as string,
   });
 
-  const mainData =
-    !!initialData && Object.keys(initialData).length ? initialData : data;
-
   return (
     <ProductsList
-      products={mainData?.products ?? []}
-      isLoading={
-        (!initialData || !Object.keys(initialData).length) && isLoading
-      }
+      products={data?.products ?? []}
+      isLoading={isLoading}
       pagination={{
         page: parseInt(router.query.page as string),
-        count: !!mainData ? mainData?.total / PAGE_SIZE : 0,
+        count: !!data ? data?.total / PAGE_SIZE : 0,
         pageHandler: (_page) =>
           router.replace({
             query: { ...router.query, page: _page },
@@ -56,18 +45,29 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   }
 
-  const productsResult = isCSR(req)
-    ? null
-    : await ProductsServices.search({
-        limit: PAGE_SIZE,
-        skip: (parseInt(query.page as string) - 1) * 10,
-        search: query.q as string,
-      });
+  if (isCSR(req))
+    return {
+      props: {
+        query,
+      },
+    };
+
+  const queryClient = new QueryClient();
+
+  const params = {
+    limit: PAGE_SIZE,
+    skip: (parseInt(query.page as string) - 1) * 10,
+    search: query.q as string,
+  };
+
+  await queryClient.prefetchQuery({
+    queryKey: [endpoints.searchProducts, params],
+    queryFn: () => ProductsServices.search(params),
+  });
 
   return {
     props: {
-      query,
-      ...productsResult,
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };
