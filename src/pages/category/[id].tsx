@@ -19,20 +19,18 @@ const ProductsCategoryPage: NextPage = () => {
   });
 
   return (
-    <>
-      <ProductsList
-        products={data?.products ?? []}
-        isLoading={isLoading}
-        pagination={{
-          page: parseInt(router.query.page as string),
-          count: !!data ? data?.total / PAGE_SIZE : 0,
-          pageHandler: (_page) =>
-            router.replace({
-              query: { ...router.query, page: _page },
-            }),
-        }}
-      />
-    </>
+    <ProductsList
+      products={data?.products ?? []}
+      isLoading={isLoading}
+      pagination={{
+        page: parseInt(router.query.page as string),
+        count: !!data ? data?.total / PAGE_SIZE : 0,
+        pageHandler: (_page) =>
+          router.replace({
+            query: { ...router.query, page: _page },
+          }),
+      }}
+    />
   );
 };
 
