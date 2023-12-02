@@ -4,7 +4,7 @@ import type { HOCFunctionalComponent } from '@/types/components';
 
 export const Layout: HOCFunctionalComponent = ({ children }) => {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 text-dark-body">
       <Header />
       <main className="w-full">
         <div className="grid grid-cols-12">
