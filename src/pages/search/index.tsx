@@ -8,7 +8,6 @@ import endpoints from '@/constants/endpoints';
 import { PAGE_SIZE } from '@/constants/pagination';
 import type { GetServerSideProps } from 'next/types';
 
-
 export default function SearchPage() {
   const router = useRouter();
 
@@ -58,16 +57,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const params = {
     limit: PAGE_SIZE,
     skip: (parseInt(query.page as string) - 1) * 10,
+    search: query.q as string,
   };
 
   await queryClient.prefetchQuery({
     queryKey: [endpoints.searchProducts, params],
-    queryFn: () =>
-      ProductsServices.search({
-        limit: PAGE_SIZE,
-        skip: (parseInt(query.page as string) - 1) * 10,
-        search: query.q as string,
-      }),
+    queryFn: () => ProductsServices.search(params),
   });
 
   return {
