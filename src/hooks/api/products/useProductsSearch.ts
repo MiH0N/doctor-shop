@@ -3,20 +3,14 @@ import ProductsServices from '@/services/products';
 import endpoints from '@/constants/endpoints';
 import type { HttpResponsePaginationProps } from '@/utils/Http';
 
-const useProductsCategory = (
+const useProductsSearch = (
   params: Omit<HttpResponsePaginationProps, 'total'> & {
-    category: Maybe<string>;
+    search: string;
   },
 ) => {
-  const { category, ...restParam } = params;
   const { data, isLoading } = useQuery({
-    queryKey: [endpoints.products, params],
-    queryFn: () =>
-      ProductsServices.getProductsCategory({
-        category: category!,
-        ...restParam,
-      }),
-    enabled: !!category && category?.length > 0,
+    queryKey: [endpoints.searchProducts, params],
+    queryFn: () => ProductsServices.search(params),
   });
 
   return {
@@ -25,4 +19,4 @@ const useProductsCategory = (
   };
 };
 
-export default useProductsCategory;
+export default useProductsSearch;

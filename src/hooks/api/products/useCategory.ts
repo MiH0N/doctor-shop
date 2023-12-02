@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import ProductService from '@/services/products';
+import ProductsServices from '@/services/products';
 import endpoints from '@/constants/endpoints';
 
 const useCategory = () => {
   const { data, isLoading } = useQuery({
     queryKey: [endpoints.products],
-    queryFn: () => ProductService.getCategories(),
+    queryFn: () => ProductsServices.getCategories(),
   });
 
   return {

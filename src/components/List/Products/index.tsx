@@ -1,4 +1,4 @@
-import React, { useRef, type FC, useState, useEffect } from 'react';
+import React, { useRef, useEffect, type FC } from 'react';
 import Pagination from '@/components/kit/Pagination';
 import { ProductCard } from '@/components/Cards/Product';
 import { ProductCardLoader } from '@/components/Cards/Product/Loader';
@@ -28,6 +28,11 @@ export const ProductsList: FC<IProductsListProps> = ({
 
   return (
     <div className="p-5 scroll-my-20" ref={wrapper}>
+      {!isLoading && !!products && products.length === 0 ? (
+        <div className="flex justify-center items-center h-96 text-2xl">
+          No data for show :(
+        </div>
+      ) : null}
       <div className="grid grid-cols-3 gap-3 p-4">
         {isLoading
           ? [...Array(6)].map(() => (

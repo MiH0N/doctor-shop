@@ -51,13 +51,10 @@ export default class Http {
       method = 'GET',
       headers,
       params,
-      type,
     } = options;
-    const isFormData = type === 'formData';
 
     const _headers = {
       Accept: 'application/json',
-      ...(isFormData ? { 'content-type': 'multipart/*' } : {}),
       ...headers,
     };
 
