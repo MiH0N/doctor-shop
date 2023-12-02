@@ -9,7 +9,7 @@ export const SearchInput: FC<ISearchInputProps> = () => {
   const [value, setValue] = useState((router.query.q as Maybe<string>) ?? '');
 
   const handleSubmit = () => {
-    router.push({ pathname: '/products', query: { q: value } });
+    router.push({ pathname: '/search', query: { q: value } });
   };
 
   return (
