@@ -13,7 +13,7 @@ export const CategoryList: FC<ICategoryListProps> = (props) => {
   return (
     <div className="p-3 rounded-lg bg-white">
       <ul className="space-y-3">
-        <Link href={'/products'}>
+        <Link href={'products'}>
           <li
             className={
               'py-1 border-blue-200 cursor-pointer duration-100 transition-all text-black/60 hover:text-black hover:ps-1 hover:border-l-2'

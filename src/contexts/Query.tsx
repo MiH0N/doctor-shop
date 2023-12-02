@@ -1,22 +1,15 @@
+import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { HOCFunctionalComponent } from '@/types/components';
-import queryFn from '@/helpers/queryFn';
+import queryClientConfig from '@/configs/queryClient';
+import type { HOCFunctionalComponent } from '@/types/components';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: Infinity,
-      queryFn,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      refetchIntervalInBackground: false,
-      refetchOnReconnect: false,
-    },
-  },
-});
 
-const AppQueryClientProvider: HOCFunctionalComponent = ({ children }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
+const AppQueryClientProvider: HOCFunctionalComponent = ({ children }) => {
+  const [queryClient] = useState(() => new QueryClient(queryClientConfig));
+
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
 
 export default AppQueryClientProvider;
