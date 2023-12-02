@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import ProductService from '@/services/products';
+import ProductsServices from '@/services/products';
 import endpoints from '@/constants/endpoints';
 import type { HttpResponsePaginationProps } from '@/utils/Http';
 
@@ -8,10 +8,15 @@ const useProductsCategory = (
     category: Maybe<string>;
   },
 ) => {
+  const { category, ...restParam } = params;
   const { data, isLoading } = useQuery({
     queryKey: [endpoints.products, params],
-    queryFn: () => ProductService.getProductsCategory(params),
-    enabled: !!params?.category,
+    queryFn: () =>
+      ProductsServices.getProductsCategory({
+        category: category!,
+        ...restParam,
+      }),
+    enabled: !!category && category?.length > 0,
   });
 
   return {
