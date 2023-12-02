@@ -22,7 +22,7 @@ export const ProductCard: FC<IProductCardProps> = ({
   categoryStyle,
 }) => {
   return (
-    <div className="relative h-auto cursor-pointer bg-white border border-gray-200 rounded-lg hover:border-transparent hover:shadow-lg duration-300 transition-all">
+    <div className="relative h-auto cursor-pointer bg-white border text-dark-title border-gray-200 rounded-lg hover:border-transparent hover:shadow-lg duration-300 transition-all">
       <span
         // text-blue-800
         className="absolute top-2 left-5 z-10 text-xs rounded-md font-semibold px-2.5 py-0.5 my-2 block w-fit text-blue-100"

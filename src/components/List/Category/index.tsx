@@ -16,7 +16,7 @@ export const CategoryList: FC = () => {
         <Link href={'/products?page=1'}>
           <li
             className={
-              'py-1 border-blue-200 cursor-pointer duration-100 transition-all text-black/60 hover:text-black hover:ps-1 hover:border-l-2'
+              'py-1 border-blue-200 cursor-pointer duration-100 transition-all text-dark-title/60 hover:text-dark-title hover:ps-1 hover:border-l-2'
             }
           >
             <span className="ps-6 text-sm">All</span>
@@ -33,7 +33,7 @@ export const CategoryList: FC = () => {
                 'py-1 border-blue-200 cursor-pointer duration-100 transition-all',
                 route.query?.id === category
                   ? 'text-blue-800 border-l-2'
-                  : 'text-black/60 hover:text-black hover:ps-1 hover:border-l-2',
+                  : 'text-dark-title/60 hover:text-dark-title hover:ps-1 hover:border-l-2',
               )}
             >
               <span className="ps-6 text-sm">
